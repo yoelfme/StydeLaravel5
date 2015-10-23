@@ -1,4 +1,5 @@
-<?php namespace App\Entitites;
+<?php
+namespace TeachMe\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
