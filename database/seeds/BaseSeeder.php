@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Collection;
 
 abstract class BaseSeeder extends Seeder
 {
+    protected $total = 50;
     protected static $pool;
+
+    public function run()
+    {
+        $this->createMultiple($this->total);
+    }
 
     abstract public function getModel();
     abstract public function getDummyData($faker, array $customValues = array());
