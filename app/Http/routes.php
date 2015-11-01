@@ -10,10 +10,30 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/', [
+    'as' => 'tickets.latest',
+    'uses' => 'TicketsController@latest'
+]);
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/populares', [
+    'as' => 'tickets.popular',
+    'uses' => 'TicketsController@popular'
+]);
 
-Route::get('home', 'HomeController@index');
+Route::get('/pendientes', [
+    'as' => 'tickets.open',
+    'uses' => 'TicketsController@open'
+]);
+
+Route::get('/tutoriales', [
+    'as' => 'tickets.closed',
+    'uses' => 'TicketsController@closed'
+]);
+
+Route::get('/solicitud/{id}', [
+    'as' => 'tickets.detail',
+    'uses' => 'TicketsController@detail'
+]);
 
 Route::controllers([
     'auth' => 'Auth\AuthController',
