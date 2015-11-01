@@ -15,7 +15,7 @@ class TicketVoteTableSeeder extends BaseSeeder
     {
         return [
             'user_id' => $this->getRandom('User')->id,
-            'ticket_id' => $this->getRandom('Ticket')->id
+            'ticket_id' => $this->getRandom('Ticket')->id,
         ];
     }
 }

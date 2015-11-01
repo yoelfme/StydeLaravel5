@@ -17,7 +17,7 @@ class TicketCommentTableSeeder extends BaseSeeder
             'user_id' => $this->getRandom('User')->id,
             'ticket_id' => $this->getRandom('Ticket')->id,
             'comment' => $faker->paragraph(),
-            'link' => $faker->randomElement(['', '', $faker->url])
+            'link' => $faker->randomElement(['', '', $faker->url]),
         ];
     }
 }
