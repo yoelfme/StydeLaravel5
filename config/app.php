@@ -139,7 +139,7 @@ return [
 		/*
 		 * Vendor Service Providers
 		 */
-		'Collective\Html\HtmlServiceProvider',
+		'TeachMe\Providers\HtmlServiceProvider',
 
 		/*
 		 * Application Service Providers...

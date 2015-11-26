@@ -22,7 +22,7 @@
 </head>
 <body>
 <div id="notifications"></div>
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-inverse">
     <div class="container">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">
@@ -39,21 +39,7 @@
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
-                    <ul class="nav navbar-nav">
-                        <li role="presentation">
-                            <a href="http://teachme.dev">Recientes</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="http://teachme.dev/populares">Populares</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="http://teachme.dev/pendientes">Abiertas</a>
-                        </li>
-                        <li role="presentation">
-                            <a href="http://teachme.dev/tutoriales">Finalizadas</a>
-                        </li>
-                    </ul>
-
+                    {!! Html::menu() !!}
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
