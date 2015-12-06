@@ -3,14 +3,15 @@ namespace TeachMe\Http\Controllers;
 
 use TeachMe\Http\Requests;
 use TeachMe\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use TeachMe\Entities\Ticket;
 
 class TicketsController extends Controller {
 
 	public function latest()
     {
-        return view('tickets.list');
+        $tickets = Ticket::orderBy('created_at', 'DESC')->get();
+        return view('tickets.list', compact('tickets'));
     }
 
     public function popular()
