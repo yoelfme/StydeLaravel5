@@ -1,8 +1,7 @@
 <div data-id="25" class="well well-sm request">
     <h4 class="list-title">
         {{ $ticket->title }}
-        <span class="label label-info absolute">{{ $ticket->status }}</span>
-
+        @include('tickets.partials.status', compact('ticket'))
     </h4>
     <p>
         {{-- <a href="#" class="btn btn-primary btn-vote" title="Votar por este tutorial">

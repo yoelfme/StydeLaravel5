@@ -6,10 +6,8 @@
         <div class="col-md-10 col-md-offset-1">
             <h2 class="title-show">
                 {{ $ticket->title }}
-                {{-- {{ dd($ticket->status === 'open') }} --}}
-                <span {!! Html::classes(['label label-info absolute', 'highlight' => $ticket->status === 'open']) !!}>
-                    {{ $ticket->status }}
-                </span>
+                
+                @include('tickets.partials.status', compact('ticket'))
             </h2>
     
             <p class="date-t">
