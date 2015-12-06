@@ -13,19 +13,14 @@
                 </h1>
 
                 <p class="label label-info news">
-                    Hay 20 Solicitudes Populares
+                    Hay {{ $tickets->total() }} Solicitudes Populares
                 </p>
 
                 @foreach($tickets as $ticket)
                     @include('tickets.partials.item', compact('ticket'))
                 @endforeach
 
-                <ul class="pagination">
-                    <li class="disabled"><span>&laquo;</span></li>
-                    <li class="active"><span>1</span></li>
-                    <li><a href="http://teachme.app/populares/?page=2">2</a></li>
-                    <li><a href="http://teachme.app/populares/?page=2" rel="next">&raquo;</a></li>
-                </ul>
+                {!! $tickets->render() !!}
             </div>
 
             <hr>
