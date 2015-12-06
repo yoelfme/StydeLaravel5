@@ -13,7 +13,7 @@
             <span class="glyphicon glyphicon-thumbs-down"></span> No votar
         </a> --}}
 
-        <a href="#">
+        <a href="{{ route('tickets.detail', $ticket) }}">
             <span class="votes-count">12 votos</span>
             - <span class="comments-count">0 comentarios</span>.
         </a>

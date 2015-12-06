@@ -42,13 +42,14 @@ class HtmlBuilder extends CollectiveHtmlBuilder
                 $bool = true;
             }
 
+
             if ($bool) {
                 $html .= $name.' ';
             }
+        }
 
-            if (! empty($html)) {
-                return ' class="'.trim($html).'"';
-            }
+        if (! empty($html)) {
+            return ' class="'.trim($html).'"';
         }
 
         return '';

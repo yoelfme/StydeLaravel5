@@ -23,7 +23,8 @@
                 <ul class="pagination">
                     <li class="disabled"><span>&laquo;</span></li>
                     <li class="active"><span>1</span></li>
-                    <li><a href="http://teachme.app/populares/?page=2">2</a></li> <li><a href="http://teachme.app/populares/?page=2" rel="next">&raquo;</a></li>
+                    <li><a href="http://teachme.app/populares/?page=2">2</a></li>
+                    <li><a href="http://teachme.app/populares/?page=2" rel="next">&raquo;</a></li>
                 </ul>
             </div>
 

@@ -31,7 +31,8 @@ class TicketsController extends Controller {
 
     public function detail($id)
     {
-        return view('tickets.details');
+        $ticket = Ticket::findOrFail($id);
+        return view('tickets.details', compact('ticket'));
     }
 
 }
