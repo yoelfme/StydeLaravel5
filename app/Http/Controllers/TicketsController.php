@@ -33,12 +33,8 @@ class TicketsController extends Controller {
     public function detail($id)
     {
         $ticket = Ticket::findOrFail($id);
-        $comments = TicketComment::select('ticket_comments.*', 'users.name')
-            ->join('users', 'ticket_comments.user_id', '=', 'users.id')
-            ->where('ticket_id', $id)
-            ->get();
 
-        return view('tickets.details', compact('ticket', 'comments'));
+        return view('tickets.details', compact('ticket'));
     }
 
 }
