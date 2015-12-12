@@ -23,18 +23,22 @@
                     <span class="label label-info">{{ $user->name }}</span>
                 @endforeach
             </p>
-
-            <form method="POST" action="http://teachme.dev/votar/5" accept-charset="UTF-8"><input name="_token" type="hidden" value="VBIv3EWDAIQuLRW0cGwNQ4OsDKoRhnK2fAEF6UbQ">
-                <!--button type="submit" class="btn btn-primary">Votar</button-->
+    
+            {!! Form::open(['route' => ['votes.submit', $ticket->id], 'method' => 'POST']) !!}
                 <button type="submit" class="btn btn-primary">
                     <span class="glyphicon glyphicon-thumbs-up"></span> Votar
                 </button>
-            </form>
+            {!! Form::close() !!}
+
+            {!! Form::open(['route' => ['votes.destroy', $ticket->id], 'method' => 'DELETE']) !!}
+                <button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-thumbs-up"></span> Eliminar Voto
+                </button>
+            {!! Form::close() !!}
 
             <h3>Nuevo Comentario</h3>
 
-
-            <form method="POST" action="http://teachme.dev/comentar/5" accept-charset="UTF-8"><input name="_token" type="hidden" value="VBIv3EWDAIQuLRW0cGwNQ4OsDKoRhnK2fAEF6UbQ">
+            {!! Form::open(['route' => ['comments.submit', $ticket->id], 'method' => 'POST']) !!}
                 <div class="form-group">
                     <label for="comment">Comentarios:</label>
                     <textarea rows="4" class="form-control" name="comment" cols="50" id="comment"></textarea>
@@ -44,7 +48,7 @@
                     <input class="form-control" name="link" type="text" id="link">
                 </div>
                 <button type="submit" class="btn btn-primary">Enviar comentario</button>
-            </form>
+            {!! Form::close() !!}
 
             <h3>Comentarios ({{ count($ticket->comments) }})</h3>
             
