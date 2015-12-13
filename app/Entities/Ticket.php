@@ -24,7 +24,7 @@ class Ticket extends Entity
 
     public function voters()
     {
-        return $this->belongsToMany(User::getClass(), 'ticket_votes');
+        return $this->belongsToMany(User::getClass(), 'ticket_votes')->withTimestamps();
     }
 
     public function getOpenAttribute()
