@@ -46,7 +46,11 @@ class TicketsController extends Controller {
 
     public function store(Request $request)
     {
-        
+        $this->validate($request, [
+            'title' => 'required|max:120'
+        ]);
+
+        dd($request->all());
     }
 
 }

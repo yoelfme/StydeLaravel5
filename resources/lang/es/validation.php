@@ -106,7 +106,7 @@ return [
     */
 
     'attributes' => [
-        //
+        'title' => 'Titulo'
     ],
 
 ];
