@@ -7,23 +7,21 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Guard;
 use TeachMe\Entities\Ticket;
 use TeachMe\Entities\TicketComment;
+use TeachMe\Repositories\TicketRepository;
 
-class TicketsController extends Controller {
+class TicketsController extends Controller
+{
 
-    protected function selectTicketList()
+    protected $ticketRepository = null;
+
+    public function __construct(TicketRepository $ticketRepository)
     {
-        return Ticket::selectRaw(
-            'tickets.* ,'
-            . '(SELECT COUNT(ticket_votes.id) FROM ticket_votes ticket_votes WHERE ticket_votes.ticket_id = tickets.id) as num_votes,'
-            . '(SELECT COUNT(ticket_comments.id) FROM ticket_comments ticket_comments WHERE ticket_comments.ticket_id = tickets.id) as num_comments'
-        )->with('author');
+        $this->ticketRepository = $ticketRepository;
     }
 
 	public function latest()
     {
-        $tickets = $this->selectTicketList()
-            ->orderBy('created_at', 'DESC')
-            ->paginate(20);
+        $tickets = $this->ticketRepository->paginateLatest();
         return view('tickets.list', compact('tickets'));
     }
 
@@ -34,19 +32,13 @@ class TicketsController extends Controller {
 
     public function open()
     {
-        $tickets = $this->selectTicketList()
-            ->where('status', 'open')
-            ->orderBy('created_at', 'DESC')
-            ->paginate(20);
+        $tickets = $this->ticketRepository->paginateOpen();
         return view('tickets.list', compact('tickets'));
     }
 
     public function closed()
     {
-        $tickets = $this->selectTicketList()
-            ->where('status', 'closed')
-            ->orderBy('created_at', 'DESC')
-            ->paginate(20);
+        $tickets = $this->ticketRepository->paginateClose();
         return view('tickets.list', compact('tickets'));
     }
 
