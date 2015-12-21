@@ -3,11 +3,17 @@ namespace TeachMe\Repositories;
 
 use TeachMe\Entities\Ticket;
 
-class TicketRepository
+class TicketRepository extends BaseRepository
 {
+
+    public function getModel()
+    {
+        return new Ticket();
+    }
+
     protected function selectTicketList()
     {
-        return Ticket::selectRaw(
+        return $this->newQuery()->selectRaw(
             'tickets.* ,'
             . '(SELECT COUNT(ticket_votes.id) FROM ticket_votes ticket_votes WHERE ticket_votes.ticket_id = tickets.id) as num_votes,'
             . '(SELECT COUNT(ticket_comments.id) FROM ticket_comments ticket_comments WHERE ticket_comments.ticket_id = tickets.id) as num_comments'
@@ -36,4 +42,5 @@ class TicketRepository
             ->orderBy('created_at', 'DESC')
             ->paginate(20);
     }
+
 }
