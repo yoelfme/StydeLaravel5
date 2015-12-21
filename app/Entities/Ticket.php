@@ -19,7 +19,7 @@ class Ticket extends Entity
 
     public function comments()
     {
-        return $this->hasMany(TicketComment::getClass());
+        return $this->hasMany(TicketComment::getClass())->with('user');
     }
 
     public function voters()
