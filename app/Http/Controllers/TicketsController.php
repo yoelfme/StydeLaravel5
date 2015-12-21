@@ -59,10 +59,10 @@ class TicketsController extends Controller
             'title' => 'required|max:120'
         ]);
 
-        $ticket = $auth->user()->tickets()->create([
-            'title' => $request->get('title'),
-            'status' => 'open'
-        ]);
+        $ticket = $this->ticketRepository->openNew(
+            currentUser(),
+            $request->get('title')
+        );
 
         return redirect()->route('tickets.detail', $ticket->id);
     }
