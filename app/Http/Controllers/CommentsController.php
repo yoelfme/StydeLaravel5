@@ -9,7 +9,22 @@ use TeachMe\Entities\Ticket;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Guard;
 
-class CommentsController extends Controller {
+use TeachMe\Repositories\CommentRepository;
+use TeachMe\Repositories\TicketRepository;
+
+class CommentsController extends Controller
+{
+
+    protected $commentRepository = null;
+    protected $ticketRepository = null;
+
+    public function __construct(
+        CommentRepository $commentRepository,
+        TicketRepository $ticketRepository)
+    {
+        $this->commentRepository = $commentRepository;
+        $this->ticketRepository = $ticketRepository;
+    }
 
 	public function submit(Request $request, Guard $auth, $id)
     {
@@ -18,11 +33,15 @@ class CommentsController extends Controller {
             'link' => 'url'
         ]);
 
-        $comment = new TicketComment($request->all());
-        $comment->user_id = $auth->id();
+        $ticket = $this->ticketRepository->findOrFail($id);
 
-        $ticket = Ticket::findOrFail($id);
-        $ticket->comments()->save($comment);
+        $this->commentRepository->create(
+            $ticket,
+            currentUser(),
+            $request->get('comment'),
+            $request->get('link'));
+
+        
 
         session()->flash('success', 'Tu comentario fue guardado exitosamente');
         return redirect()->back();
