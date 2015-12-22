@@ -23,7 +23,10 @@ class VoteRepository extends BaseRepository
 
     public function unvote(User $user, Ticket $ticket)
     {
+        if (! $user->hasVoted($ticket)) return false;
+
         $user->voted()->detach($ticket);
+        return true;
     }
 
 }
