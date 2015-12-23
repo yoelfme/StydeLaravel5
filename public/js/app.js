@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+    var alert = new Alert('#notifications');
+
     $('.btn-vote').click(function (e) {
         e.preventDefault();
 
@@ -17,9 +19,19 @@ $(document).ready(function () {
             // alert
             // update count votes
             ticket.find('.btn-unvote').removeClass('hide');
+
+            alert.success('Gracias por votar!');
+
+            var voteCount = ticket.find('.votes-count');
+            var votes = parseInt(voteCount.text().split(' ')[0]);
+            votes++;
+
+            voteCount.text(votes == 1 ? '1 voto' : votes + ' votos');
         }).fail(function () {
             // print error message
             button.removeClass('hide');
+
+            alert.error('Ocurrio un error!');
         });
     });
 });
