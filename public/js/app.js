@@ -2,70 +2,67 @@ $(document).ready(function () {
 
     var alert = new Alert('#notifications');
 
-    $('.btn-vote').click(function (e) {
-        e.preventDefault();
-
-        var form = $('#form-vote');
-
-        var button = $(this);
+    function VoteForm(form, button, buttonRevert) {
         var ticket = button.closest('.ticket');
         var id = ticket.data('id');
-
         var action = form.prop('action').replace(':id', id);
+        var voteCount = ticket.find('.votes-count');
+
+        buttonRevert = ticket.find(buttonRevert);
 
         button.addClass('hide');
 
-        $.post(action, form.serialize(), function (response) {
-            // alert
-            // update count votes
-            ticket.find('.btn-unvote').removeClass('hide');
+        this.getVotes = function () {
 
-            alert.success('Gracias por votar!');
+            return parseInt(voteCount.text().split(' ')[0]);  
+        }
 
-            var voteCount = ticket.find('.votes-count');
-            var votes = parseInt(voteCount.text().split(' ')[0]);
-            votes++;
-
+        this.updateCount = function (votes) {
             voteCount.text(votes == 1 ? '1 voto' : votes + ' votos');
-        }).fail(function () {
-            // print error message
-            button.removeClass('hide');
+        }
 
-            alert.error('Ocurrio un error!');
+        this.submit = function (success) {
+            $.post(action, form.serialize(), function (response) {
+                buttonRevert.removeClass('hide');
+                success(response);
+            }).fail(function () {
+                // print error message
+                button.removeClass('hide');
+
+                alert.error('Ocurrio un error!');
+            });
+        }
+    }
+
+    $('.btn-vote').click(function (e) {
+        e.preventDefault();
+        
+        var voteForm = new VoteForm($('#form-vote'), $(this), '.btn-unvote');
+
+        voteForm.submit(function (response) {
+
+            if (response.success) {
+                alert.success('Gracias por tu voto!');
+                voteForm.updateCount(voteForm.getVotes() + 1);
+            }
         });
+        
+        
     });
 
     $('.btn-unvote').click(function (e) {
         e.preventDefault();
 
-        var form = $('#form-unvote');
+        var voteForm = new VoteForm($('#form-unvote'), $(this), '.btn-vote');
 
-        var button = $(this);
-        var ticket = button.closest('.ticket');
-        var id = ticket.data('id');
+        voteForm.submit(function (response) {
 
-        var action = form.prop('action').replace(':id', id);
-
-        button.addClass('hide');
-
-        $.post(action, form.serialize(), function (response) {
-            // alert
-            // update count votes
-            ticket.find('.btn-vote').removeClass('hide');
-
-            alert.success('Voto eliminado!');
-
-            var voteCount = ticket.find('.votes-count');
-            var votes = parseInt(voteCount.text().split(' ')[0]);
-            votes--;
-
-            voteCount.text(votes <= 1 ? votes + ' voto' : votes + ' votos');
-        }).fail(function () {
-            // print error message
-            button.removeClass('hide');
-
-            alert.error('Ocurrio un error!');
+            if (response.success) {
+                alert.info('Voto eliminado!');
+                voteForm.updateCount(voteForm.getVotes() - 1);
+            }
         });
+
     });
 
 });
