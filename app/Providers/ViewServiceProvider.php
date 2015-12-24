@@ -3,9 +3,6 @@ namespace TeachMe\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Lang;
-
 class ViewServiceProvider extends ServiceProvider {
 
 	/**
@@ -17,13 +14,7 @@ class ViewServiceProvider extends ServiceProvider {
 	{
 		view()->composer(
 			'tickets/list',
-			function ($view) {
-				$view->title = trans(Route::currentRouteName() . '_title');
-				$view->total = Lang::choice(
-					'tickets.total',
-					$view->tickets->total(),
-					['title' => strtolower($view->title)]);
-			}
+			'TeachMe\Http\ViewComposers\TicketsListComposer'
 		);
 	}
 
