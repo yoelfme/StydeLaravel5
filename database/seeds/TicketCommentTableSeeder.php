@@ -1,8 +1,9 @@
 <?php
 
 use TeachMe\Entities\TicketComment;
+use Styde\Seeder\Seeder;
 
-class TicketCommentTableSeeder extends BaseSeeder
+class TicketCommentTableSeeder extends Seeder
 {
     protected $total = 250;
 
@@ -11,11 +12,11 @@ class TicketCommentTableSeeder extends BaseSeeder
         return new TicketComment();
     }
 
-    public function getDummyData($faker, array $customValues = array())
+    public function getDummyData(Faker\Generator $faker, array $customValues = array())
     {
         return [
-            'user_id' => $this->getRandom('User')->id,
-            'ticket_id' => $this->getRandom('Ticket')->id,
+            'user_id' => $this->random('User')->id,
+            'ticket_id' => $this->random('Ticket')->id,
             'comment' => $faker->paragraph(),
             'link' => $faker->randomElement(['', '', $faker->url]),
         ];

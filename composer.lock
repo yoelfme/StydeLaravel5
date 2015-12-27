@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "61b52955aa2d81b9f68a7d32f783b5b7",
-    "content-hash": "123c799422d5980cab6f7746210c9004",
+    "hash": "d89ebb622a96bf45fa7454e8e9811942",
+    "content-hash": "2d078a17b75a249bfc8d1215e129cb24",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -1167,6 +1167,53 @@
                 "shell"
             ],
             "time": "2015-11-12 16:18:56"
+        },
+        {
+            "name": "styde/seeder",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/StydeNet/seeder.git",
+                "reference": "eab3e3b06918ff18f6129fdfad361b879e6f81f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/StydeNet/seeder/zipball/eab3e3b06918ff18f6129fdfad361b879e6f81f6",
+                "reference": "eab3e3b06918ff18f6129fdfad361b879e6f81f6",
+                "shasum": ""
+            },
+            "require": {
+                "fzaninotto/faker": "1.5.*@dev",
+                "laravel/framework": "5.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Styde\\Seeder\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Duilio Palacios",
+                    "email": "admin@styde.net",
+                    "homepage": "https://styde.net",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel's improved seeders",
+            "homepage": "https://styde.net",
+            "keywords": [
+                "laravel",
+                "seeder"
+            ],
+            "time": "2015-11-28 22:48:43"
         },
         {
             "name": "swiftmailer/swiftmailer",

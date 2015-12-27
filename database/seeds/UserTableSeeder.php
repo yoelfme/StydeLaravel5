@@ -1,18 +1,19 @@
 <?php
 
 use TeachMe\Entities\User;
+use Styde\Seeder\Seeder;
 
 /**
  * Seeder for model User.
  */
-class UserTableSeeder extends BaseSeeder
+class UserTableSeeder extends Seeder
 {
     public function getModel()
     {
         return new User();
     }
 
-    public function getDummyData($faker, array $customValues = array())
+    public function getDummyData(Faker\Generator $faker, array $customValues = array())
     {
         return [
             'name' => $faker->name,
