@@ -27,14 +27,14 @@ class ResourceTest extends TestCase {
             ->press('Enviar Solicitud');
 
         // Then
-        $this->see($this->title)
-            ->seeLink('Ver recurso', $this->link);
-
         $this->seeInDatabase('tickets', [
             'title' => $this->title,
             'link' => $this->link,
             'status' => 'closed',
         ]);
+        
+        $this->see($this->title)
+            ->seeLink('Ver recurso', $this->link);
     }
 
 }

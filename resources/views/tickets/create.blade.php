@@ -15,6 +15,12 @@
                         'placeholder' => 'Describe brevemente de que quieres que se trate el tutorial'
                     ]) !!}
                 </div>
+                <div class="form-group">
+                    {!! Form::label('link', 'Link') !!}
+                    {!! Form::text('link', null, [
+                        'class' => 'form-control'
+                    ]) !!}
+                </div>
                 <p>
                     <button type="submit" class="btn btn-primary">Enviar Solicitud</button>
                 </p>

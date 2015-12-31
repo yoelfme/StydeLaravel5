@@ -9,6 +9,7 @@ class Ticket extends Entity
 
     protected $fillable = [
         'title',
+        'link',
         'status'
     ];
 
