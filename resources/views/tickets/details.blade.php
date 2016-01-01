@@ -73,7 +73,7 @@
             <h3>Comentarios ({{ count($ticket->comments) }})</h3>
             
             @foreach($ticket->comments as $comment)
-                <div class="well well-sm">
+                <div {!! Html::classes(['well well-sm', 'well-selected' => $comment->selected ]) !!}>
                     <p><strong>{{ $comment->user->name }}</strong></p>
                     <p>{{ $comment->comment }}</p>
                     @if ($comment->link)
@@ -82,12 +82,14 @@
                                 {{ $comment->link }}
                             </a>
                         </p>
-
-                        {!! Form::open(['route' => ['tickets.select', $ticket, $comment]]) !!}
-                            {!! Form::submit('Seleccionar tutorial', [
-                                'class' => 'btn btn-info'
-                            ]) !!}
-                        {!! Form::close() !!}
+                        
+                        @if ($ticket->status == 'open')
+                            {!! Form::open(['route' => ['tickets.select', $ticket, $comment]]) !!}
+                                {!! Form::submit('Seleccionar tutorial', [
+                                    'class' => 'btn btn-info'
+                                ]) !!}
+                            {!! Form::close() !!}
+                        @endif
                     @endif
                     <p class="date-t">
                         <span class="glyphicon glyphicon-time"></span>
