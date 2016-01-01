@@ -82,6 +82,12 @@
                                 {{ $comment->link }}
                             </a>
                         </p>
+
+                        {!! Form::open(['route' => ['tickets.select', $ticket, $comment]]) !!}
+                            {!! Form::submit('Seleccionar tutorial', [
+                                'class' => 'btn btn-info'
+                            ]) !!}
+                        {!! Form::close() !!}
                     @endif
                     <p class="date-t">
                         <span class="glyphicon glyphicon-time"></span>

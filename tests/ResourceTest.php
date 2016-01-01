@@ -70,7 +70,7 @@ class ResourceTest extends TestCase {
             'selected' => true,
         ]);
 
-        $this->seePageIs(route('tickets.detail'), $ticket);
+        $this->seePageIs(route('tickets.detail', $ticket));
 
         $this->seeLink('Ver recurso', $this->link);
     }

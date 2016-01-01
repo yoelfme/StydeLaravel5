@@ -35,6 +35,11 @@ Route::get('/solicitud/{id}', [
     'uses' => 'TicketsController@detail'
 ]);
 
+Route::post('/solicitud/{id}/seleccionar/{id_comment}', [
+    'as' => 'tickets.select',
+    'uses' => 'TicketsController@select'
+]);
+
 Route::controllers([
     'auth' => 'Auth\AuthController',
     'password' => 'Auth\PasswordController',
