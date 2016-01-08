@@ -83,12 +83,14 @@
                             </a>
                         </p>
                         
+                        @can('selectResource', $ticket)
                         @if ($ticket->status == 'open')
                             {!! Form::open(['route' => ['tickets.select', $ticket, $comment]]) !!}
                                 {!! Form::submit('Seleccionar tutorial', [
                                     'class' => 'btn btn-info'
                                 ]) !!}
                             {!! Form::close() !!}
+                            @endcan
                         @endif
                     @endif
                     <p class="date-t">

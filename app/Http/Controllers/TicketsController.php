@@ -53,7 +53,7 @@ class TicketsController extends Controller
         return view('tickets.create');
     }
 
-    public function store(Request $request, Guard $auth)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'title' => 'required|max:120',
@@ -72,6 +72,8 @@ class TicketsController extends Controller
     public function select($ticketId, $commentId)
     {
         $ticket = $this->ticketRepository->findOrFail($ticketId);
+
+        $this->authorize('selectResource', $ticket);
 
         $ticket->assignResource($commentId);
 

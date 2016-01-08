@@ -146,6 +146,7 @@ return [
 		 * Application Service Providers...
 		 */
 		'TeachMe\Providers\AppServiceProvider',
+		'TeachMe\Providers\AuthServiceProvider',
 		'TeachMe\Providers\BusServiceProvider',
 		'TeachMe\Providers\ConfigServiceProvider',
 		'TeachMe\Providers\EventServiceProvider',
@@ -179,6 +180,7 @@ return [
 		'Eloquent'  => 'Illuminate\Database\Eloquent\Model',
 		'Event'     => 'Illuminate\Support\Facades\Event',
 		'File'      => 'Illuminate\Support\Facades\File',
+		'Gate'      => 'Illuminate\Support\Facades\Gate',
 		'Hash'      => 'Illuminate\Support\Facades\Hash',
 		'Input'     => 'Illuminate\Support\Facades\Input',
 		'Inspiring' => 'Illuminate\Foundation\Inspiring',
