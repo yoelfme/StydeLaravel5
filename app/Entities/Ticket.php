@@ -47,6 +47,10 @@ class Ticket extends Entity
         $this->status = 'closed';
         $this->save();
 
+        $this->comments()->where('selected', true)->update([
+            'selected' => false
+        ]);
+
         $comment->selected = true;
         $comment->save();
     }
