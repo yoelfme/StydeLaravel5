@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace TeachMe\Http\Controllers;
 
 use TeachMe\Http\Requests;
@@ -19,7 +19,7 @@ class TicketsController extends Controller
         $this->ticketRepository = $ticketRepository;
     }
 
-	public function latest()
+    public function latest()
     {
         $tickets = $this->ticketRepository->paginateLatest();
         return view('tickets.list', compact('tickets'));
@@ -27,7 +27,8 @@ class TicketsController extends Controller
 
     public function popular()
     {
-        return view('tickets.list');
+        $tickets = $this->ticketRepository->paginatePopular();
+        return view('tickets.list', compact('tickets'));
     }
 
     public function open()
@@ -79,5 +80,4 @@ class TicketsController extends Controller
 
         return redirect()->back();
     }
-
 }

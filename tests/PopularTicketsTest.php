@@ -16,8 +16,8 @@ class PopularTicketsTest extends TestCase
      */
     public function test_see_popular_tickets()
     {
-        $popularTicket = seed('Ticket');
-        $ticket = seed('Ticket');
+        $popularTicket = seed('Ticket', ['title' => 'Muy popular']);
+        $ticket = seed('Ticket', ['title' => 'No popular']);
 
         seed('TicketVote', 10, ['ticket_id' => $popularTicket->id]);
         seed('TicketVote', 2, ['ticket_id' => $ticket->id]);
