@@ -18,15 +18,15 @@ class TicketRepository extends BaseRepository
 
     public function getCountTicketVotesQuery()
     {
-
+        return '(SELECT COUNT(ticket_votes.id) FROM ticket_votes ticket_votes WHERE ticket_votes.ticket_id = tickets.id)';
     }
 
     protected function selectTicketList()
     {
         return $this->newQuery()->selectRaw(
             'tickets.* ,'
-            . '(SELECT COUNT(ticket_votes.id) FROM ticket_votes ticket_votes WHERE ticket_votes.ticket_id = tickets.id) as num_votes,'
-            . ' as num_comments'
+            . $this->getCountTicketVotesQuery() . ' as num_votes,'
+            . $this->getCountTicketCommentsQuery() . ' as num_comments'
         )->with('author');
     }
 
@@ -40,7 +40,7 @@ class TicketRepository extends BaseRepository
     public function paginatePopular()
     {
         return $this->selectTicketList()
-            ->having('num_votes', '>=', 10)
+            ->whereRaw($this->getCountTicketVotesQuery() . '>= 10')
             ->orderBy('num_votes', 'DESC')
             ->paginate(20);
     }
